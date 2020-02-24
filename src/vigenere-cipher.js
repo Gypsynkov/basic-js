@@ -2,32 +2,25 @@ class VigenereCipheringMachine {
     constructor(dir=true) {
         this.dir = dir;
     }
-
     symCode(sym) {
         return sym.charCodeAt(0) - 'A'.charCodeAt(0);
     }
-
     shift(sym, len) {
         let cod = this.symCode(sym);
         return String.fromCharCode((cod + len) % 26 + 'A'.charCodeAt(0));
     }
-
     encrypt(str, key) {
         return this.crypt(str, key, false);
     }
-
     decrypt(str, key) {
         return this.crypt(str, key, true);
     }
-
     crypt(str, key, isDec) {
         if(str === undefined || key == undefined) {
             throw new Error();
         }
-
         str = str.toUpperCase();
         key = key.toUpperCase();
-
         let arr = [];
         let coded = 0;
         for(let i = 0; i < str.length; ++i) {
@@ -39,14 +32,12 @@ class VigenereCipheringMachine {
                 }
                 coded++;
             } else {
-                arr.push(str[i]);
+             arr.push(str[i]);
             }
         }
-
         if(!this.dir) {
             arr.reverse();
         }
-
         return arr.join('');
     }
 }
