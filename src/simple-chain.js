@@ -1,24 +1,43 @@
 const chainMaker = {
+  result: [],
   getLength() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+     return this.result.length;
   },
   addLink(value) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    this.result.push(value);
+    return this;
   },
   removeLink(position) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    if(typeof(position) !== 'number') {
+      this.result = [];
+      throw new Error();
+    }
+    position--;
+    if(position < 0 || position >= this.getLength()) {
+      this.result = [];
+      throw new Error();
+    }
+    this.result.splice(position, 1);
+    return this;
   },
   reverseChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    this.result.reverse();
+    return this;
   },
   finishChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    let res = '';
+
+    for(let i = 0; i < this.getLength(); ++i) {
+      res = res+ `( ${this.result[i]} )`;
+
+      if(i < this.getLength() - 1) {
+        res=res + '~~';
+      }
+    }
+    this.result= [];
+    return res;
   }
-};
+  }
+
 
 module.exports = chainMaker;
